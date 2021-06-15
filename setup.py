@@ -18,7 +18,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
-        "Topic :: System :: Logging",
     ],
     python_requires=">=3"
 )
