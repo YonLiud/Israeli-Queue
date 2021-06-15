@@ -15,7 +15,7 @@ setuptools.setup(
     url="https://github.com/YonLiud/Israeli-Queue",
     packages=setuptools.find_packages(),
     classifiers=[
-        "License :: OSI Approved :: The Unlicense (Unlicense)",
+        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
         "Topic :: System :: Logging",
