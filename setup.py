@@ -12,7 +12,7 @@ setup(
   classifiers=[
     'Development Status :: 3 - Alpha',	
     'Intended Audience :: Developers',
-    'Topic :: Software Development :: Utility Tools',
+    'Topic :: Utilities',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python :: 3',
   ],
