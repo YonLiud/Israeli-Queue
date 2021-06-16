@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name = 'IsraeliQueue',
-  version = '0.1',
+  version = '0.2',
   license='MIT',
   description = 'A Python module that allows the usage of Israeli Queue',
   author = 'Yon Liud',
