@@ -94,6 +94,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Project Link: [https://github.com/YonLiud/Israeli-Queue](https://github.com/YonLiud/Israeli-Queue)
 
+PyPI Lik: [https://pypi.org/project/IsraeliQueue/](https://pypi.org/project/IsraeliQueue/)
 
 
 <!-- ACKNOWLEDGEMENTS
