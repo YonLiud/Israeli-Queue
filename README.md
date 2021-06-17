@@ -92,19 +92,16 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Project Link: [https://github.com/YonLiud/Israeli-Queue](https://github.com/YonLiud/Israeli-Queue)
+* Project Link: [https://github.com/YonLiud/Israeli-Queue](https://github.com/YonLiud/Israeli-Queue)
+* PyPI Link:    [https://pypi.org/project/IsraeliQueue/](https://pypi.org/project/IsraeliQueue/)
+* Discord:      [y0nliud#1545](https://discord.com/)
 
-PyPI Lik: [https://pypi.org/project/IsraeliQueue/](https://pypi.org/project/IsraeliQueue/)
-
-
-<!-- ACKNOWLEDGEMENTS
 ## Acknowledgements
 
-* []()
-* []()
-* []()
+* [@jonatan1609](https://github.com/jonatan1609)
+* [@nonameswereavailable](https://github.com/nonameswereavailable)
+* [Python Discord Server](https://discord.gg/python)
 
- -->
 
 
 
