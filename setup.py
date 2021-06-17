@@ -5,7 +5,7 @@ with open("README.md", encoding="u8") as readme:
 
 setup(
   name = 'IsraeliQueue',
-  version = '1.0',
+  version = '1.1',
   license='MIT',
   description = 'A Python module that allows the usage of Israeli Queue',
   author = 'Yon Liud',

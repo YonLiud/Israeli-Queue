@@ -58,9 +58,18 @@ pip install IsraeliQueue
 <!-- USAGE EXAMPLES -->
 ## Usage Example
 
+#### Sort by `Key`
+
 <a href="https://ibb.co/2kbWsKQ"><img src="https://i.ibb.co/kSd59cf/carbon-1.png" alt="carbon-1" border="0"></a>
 
 Returns: `[Item(item='Noy', group=0), Item(item='Nitzan', group=0), Item(item='Omry', group=1), Item(item='Omer', group=1), Item(item='Oz', group=1), Item(item='Alma', group=2)]`
+
+
+#### Sort by `Type`
+
+<a href="https://ibb.co/3dW9m08"><img src="https://i.ibb.co/yP5cF8M/carbon-2.png" alt="carbon-2" border="0"></a>
+
+Returns: `[[2, 4], ['Alex', 'Robert'], [[0.4, 0.9]]]`
 
 <!-- ROADMAP 
 ## Roadmap
