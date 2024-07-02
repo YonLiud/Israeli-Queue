@@ -1,11 +1,3 @@
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -24,25 +16,24 @@
   <h3 align="center">Israeli Queue</h3>
 
   <p align="center">
-    Israeli Queues are a variation of Priority Queues where instead of associating priority with the element to be enqueued, the pr
+    A variation of Priority Queues where the priority of elements can change dynamically based on their relationships with other elements in the queue
  </p>
 
 </p>
 
+## About Israeli Queue
+Israeli Queues are a playful take on this real-world behavior, where the priority of elements in the queue is influenced not only by their inherent priority but also by their relationships to other elements already in the queue. This results in a more complex and realistic simulation of how queues might work in certain social contexts.
 
+### Key Characteristics:
 
+* Dynamic Priority: Unlike traditional priority queues where each element has a fixed priority, in Israeli Queues, the priority can change based on the position and relationship with other elements in the queue.
+* Group Influence: Elements can be grouped, and elements within the same group may join each other, altering the order of the queue.
+* Real-World Simulation: This algorithm provides a closer approximation to real-world scenarios where social relationships and behaviors affect queuing order.
 
-
-<!-- ABOUT THE PROJECT -->
-## About The Project
-
-A project planned and built by 3 Israeli 11 grades that met on the Offical Python Discord
-
-## About Israeli Queues
-
-Queues in Israel are usually unorganized, due to which people tend to find their friends, who are already waiting, and instead of adhering to the usual protocol of joining at the back end, they cut through and directly join their friends. Israeli Queues mimic this behavior and hence get this punny name.
-
-
+### Applications:
+1. Event Management: Israeli Queues can be used in event management systems where attendees might have VIP passes or group entries that allow them to join the queue at different points.
+2. Customer Service: In customer service scenarios, regular customers or members of loyalty programs might receive different queuing treatment.
+3. Simulation and Modeling: This concept can be used in simulations that require a more nuanced approach to queuing, reflecting human social behaviors.
 <!-- GETTING STARTED -->
 ## Getting Started
 
@@ -77,44 +68,15 @@ Returns: `[[2, 4], ['Alex', 'Robert'], [[0.4, 0.9]]]`
 See the [open issues](https://github.com/YonLiud/Israeli-Queue/issues) for a list of proposed features (and known issues).
 -->
 
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-
-
-<!-- CONTACT -->
-## Contact
+## Links
 
 * Project Link: [https://github.com/YonLiud/Israeli-Queue](https://github.com/YonLiud/Israeli-Queue)
 * PyPI Link:    [https://pypi.org/project/IsraeliQueue/](https://pypi.org/project/IsraeliQueue/)
-* Discord:      [y0nliud#1545](https://discord.com/)
 
-## Acknowledgements
-
-* [@jonatan1609](https://github.com/jonatan1609)
-* [@nonameswereavailable](https://github.com/nonameswereavailable)
-* [Python Discord Server](https://discord.gg/python)
-
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/YonLiud/Israeli-Queue.svg?style=for-the-badge
 [contributors-url]: https://github.com/YonLiud/Israeli-Queue/graphs/contributors
