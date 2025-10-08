@@ -58,14 +58,18 @@ class IsraeliQueue(List[Item]):
             most_far = max(all_friends, key=lambda f: f[0])
             # Insert after the furthest friend (index + 1)
             self.insert(most_far[0] + 1, item)
-
-
-class IsraeliQueueByType(list):
-    def enqueue(self, a):
-        for i in range(len(self)):
-            if type(self[i][0]) == type(a):
-                self[i].append(a)
-                break
+    
+    def enqueue(self, item: Item, friend: Optional[Item] = None) -> None:
+        """
+        Add an item to the queue. If friend is provided, joins them in line.
+        If no friend provided, adds to the end.
+        
+        Args:
+            item: The item to add
+            friend: Optional existing item to join
+        """
+        if friend is None:
+            self.append(item)
         else:
             self.append([a])
 
