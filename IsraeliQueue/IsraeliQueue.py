@@ -7,7 +7,9 @@ class Item:
     group: int
 
     def __eq__(self, other):
-        return self.group == other
+        if isinstance(other, Item):
+            return self.group == other.group
+        return False
 
 
 class IsraeliQueue(list):
