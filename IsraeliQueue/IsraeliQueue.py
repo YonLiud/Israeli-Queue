@@ -40,6 +40,15 @@ class IsraeliQueueByType(list):
             self.append([a])
 
     def dequeue(self):
-        return self.pop(0)
+        if not self:
+            raise IndexError("Cannot dequeue from empty queue")
+        if not self[0]:
+            raise IndexError("Cannot dequeue from empty subqueue")
+        
+        result = self[0].pop(0)
+        # Remove empty sublists
+        if not self[0]:
+            self.pop(0)
+        return result
 
 
