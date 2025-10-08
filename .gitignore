@@ -130,3 +130,5 @@ dmypy.json
 
 # Vim temp files
 *.un~
+
+.vscode/
