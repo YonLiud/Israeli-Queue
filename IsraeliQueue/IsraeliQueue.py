@@ -27,13 +27,28 @@ class Item:
         return hash((self.item, self.group))
 
 
-class IsraeliQueue(list):
-    def put(self, item, friend):
+class IsraeliQueue(List[Item]):
+    """
+    A queue where items can join their friends (same group) in line.
+    Items are inserted after the furthest friend in the queue.
+    """
+    
+    def put(self, item: Item, friend: Item) -> None:
+        """
+        Add an item to the queue next to its friends.
+        
+        Args:
+            item: The item to add to the queue
+            friend: An existing item in the queue (used for validation)
+            
+        Raises:
+            ValueError: If friend is not found in the queue
+        """
         if friend not in self:
             raise ValueError("Friend not found in queue")
         
         # Find all friends (items with same group as the new item)
-        all_friends = [(index, f) for index, f in enumerate(self) if f.group == item.group]
+        all_friends = [(index, f) for index, f in enumerate(self) if f.same_group(item)]
         
         if not all_friends:
             # No friends in queue, append to end
