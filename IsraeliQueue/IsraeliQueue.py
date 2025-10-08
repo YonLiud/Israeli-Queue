@@ -1,7 +1,9 @@
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, List, Optional, TypeVar, Generic, Union
 
-@dataclass
+T = TypeVar('T')
+
+@dataclass 
 class Item:
     item: Any
     group: int
@@ -71,18 +73,138 @@ class IsraeliQueue(List[Item]):
         if friend is None:
             self.append(item)
         else:
-            self.append([a])
-
-    def dequeue(self):
+            self.put(item, friend)
+    
+    def dequeue(self) -> Item:
+        """
+        Remove and return the first item from the queue.
+        
+        Returns:
+            The first item in the queue
+            
+        Raises:
+            IndexError: If the queue is empty
+        """
         if not self:
             raise IndexError("Cannot dequeue from empty queue")
-        if not self[0]:
-            raise IndexError("Cannot dequeue from empty subqueue")
+        return self.pop(0)
+    
+    def peek(self) -> Item:
+        """
+        Return the first item without removing it.
         
-        result = self[0].pop(0)
-        # Remove empty sublists
-        if not self[0]:
-            self.pop(0)
-        return result
+        Returns:
+            The first item in the queue
+            
+        Raises:
+            IndexError: If the queue is empty
+        """
+        if not self:
+            raise IndexError("Cannot peek empty queue")
+        return self[0]
+    
+    def is_empty(self) -> bool:
+        """Check if the queue is empty."""
+        return len(self) == 0
+    
+    def size(self) -> int:
+        """Return the number of items in the queue."""
+        return len(self)
+    
+    def get_groups(self) -> List[int]:
+        """Get all unique group numbers in the queue."""
+        return list(set(item.group for item in self))
+    
+    def items_in_group(self, group: int) -> List[Item]:
+        """Get all items belonging to a specific group."""
+        return [item for item in self if item.group == group]
+
+
+class IsraeliQueueByType(List[List[Any]]):
+    """
+    A queue that groups items by their type.
+    Items of the same type are grouped together in sublists.
+    """
+    
+    def enqueue(self, item: Any) -> None:
+        """
+        Add an item to the queue, grouping by type.
+        
+        Args:
+            item: The item to add to the queue
+        """
+        item_type = type(item)
+        for subqueue in self:
+            if subqueue and type(subqueue[0]) == item_type:
+                subqueue.append(item)
+                return
+        # No existing subqueue for this type, create new one
+        self.append([item])
+
+    def dequeue(self) -> Any:
+        """
+        Remove and return the first item from the first non-empty subqueue.
+        
+        Returns:
+            The first item from the first subqueue
+            
+        Raises:
+            IndexError: If the queue is empty
+        """
+        if not self:
+            raise IndexError("Cannot dequeue from empty queue")
+        
+        # Find first non-empty subqueue
+        for i, subqueue in enumerate(self):
+            if subqueue:
+                result = subqueue.pop(0)
+                # Remove empty sublists
+                if not subqueue:
+                    self.pop(i)
+                return result
+        
+        raise IndexError("Cannot dequeue from empty queue")
+    
+    def peek(self) -> Any:
+        """
+        Return the first item without removing it.
+        
+        Returns:
+            The first item from the first subqueue
+            
+        Raises:
+            IndexError: If the queue is empty
+        """
+        if not self:
+            raise IndexError("Cannot peek empty queue")
+        
+        for subqueue in self:
+            if subqueue:
+                return subqueue[0]
+        
+        raise IndexError("Cannot peek empty queue")
+    
+    def is_empty(self) -> bool:
+        """Check if the queue is empty."""
+        return not self or all(not subqueue for subqueue in self)
+    
+    def size(self) -> int:
+        """Return the total number of items across all subqueues."""
+        return sum(len(subqueue) for subqueue in self)
+    
+    def get_types(self) -> List[type]:
+        """Get all types present in the queue."""
+        types = []
+        for subqueue in self:
+            if subqueue:
+                types.append(type(subqueue[0]))
+        return types
+    
+    def items_of_type(self, item_type: type) -> List[Any]:
+        """Get all items of a specific type."""
+        for subqueue in self:
+            if subqueue and type(subqueue[0]) == item_type:
+                return subqueue.copy()
+        return []
 
 
