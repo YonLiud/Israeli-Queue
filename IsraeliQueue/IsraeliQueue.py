@@ -14,10 +14,20 @@ class Item:
 
 class IsraeliQueue(list):
     def put(self, item, friend):
-        assert friend in self
+        if friend not in self:
+            raise ValueError("Friend not found in queue")
+        
+        # Find all friends (items with same group as the new item)
         all_friends = [(index, f) for index, f in enumerate(self) if f.group == item.group]
-        most_far = max(all_friends, key=lambda f: f[0])
-        self.insert(most_far[0], item)
+        
+        if not all_friends:
+            # No friends in queue, append to end
+            self.append(item)
+        else:
+            # Find the furthest friend and insert after them
+            most_far = max(all_friends, key=lambda f: f[0])
+            # Insert after the furthest friend (index + 1)
+            self.insert(most_far[0] + 1, item)
 
 
 class IsraeliQueueByType(list):
