@@ -6,10 +6,25 @@ class Item:
     item: Any
     group: int
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Item):
+            return self.item == other.item and self.group == other.group
+        return False
+    
+    def same_group(self, other) -> bool:
+        """Check if this item is in the same group as another item."""
         if isinstance(other, Item):
             return self.group == other.group
         return False
+    
+    def __repr__(self) -> str:
+        return f"Item(item={self.item!r}, group={self.group})"
+    
+    def __str__(self) -> str:
+        return f"Item({self.item}, group={self.group})"
+    
+    def __hash__(self) -> int:
+        return hash((self.item, self.group))
 
 
 class IsraeliQueue(list):
