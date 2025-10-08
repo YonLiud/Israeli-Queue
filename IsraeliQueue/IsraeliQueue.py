@@ -3,7 +3,7 @@ from typing import Any
 
 @dataclass
 class Item:
-    item: any
+    item: Any
     group: int
 
     def __eq__(self, other):
