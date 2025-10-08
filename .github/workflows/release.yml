@@ -1,0 +1,79 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v2.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Is this a pre-release?'
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for tags
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+        pip install -e .
+
+    - name: Run tests
+      run: pytest --cov=IsraeliQueue
+
+    - name: Validate version format
+      run: |
+        if [[ ! "${{ github.event.inputs.version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-.*)?$ ]]; then
+          echo "Invalid version format. Use v1.2.3 or v1.2.3-beta.1"
+          exit 1
+        fi
+
+    - name: Check if tag exists
+      run: |
+        if git tag -l | grep -q "^${{ github.event.inputs.version }}$"; then
+          echo "Tag ${{ github.event.inputs.version }} already exists"
+          exit 1
+        fi
+
+    - name: Generate changelog
+      id: changelog
+      run: |
+        # Simple changelog generation - you might want to use a more sophisticated tool
+        echo "## Changes" > CHANGELOG_TEMP.md
+        echo "" >> CHANGELOG_TEMP.md
+        
+        # Get commits since last tag
+        LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        if [ -n "$LAST_TAG" ]; then
+          git log --oneline ${LAST_TAG}..HEAD --pretty=format:"- %s" >> CHANGELOG_TEMP.md
+        else
+          echo "- Initial release" >> CHANGELOG_TEMP.md
+        fi
+        
+        echo "" >> CHANGELOG_TEMP.md
+        echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${LAST_TAG}...${{ github.event.inputs.version }}" >> CHANGELOG_TEMP.md
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ github.event.inputs.version }}
+        name: Release ${{ github.event.inputs.version }}
+        body_path: CHANGELOG_TEMP.md
+        prerelease: ${{ github.event.inputs.prerelease }}
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
