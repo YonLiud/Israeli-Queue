@@ -4,13 +4,12 @@ This guide will help you set up automated publishing to PyPI using GitHub Action
 
 ## 📋 Prerequisites
 
-1. **PyPI Account**: Create accounts on both [PyPI](https://pypi.org) and [Test PyPI](https://test.pypi.org)
+1. **PyPI Account**: Create an account on [PyPI](https://pypi.org)
 2. **GitHub Repository**: Your Israeli Queue repository on GitHub
 3. **Admin Access**: You need admin access to the repository to set up secrets
 
-## 🔑 Step 1: Create API Tokens
+## 🔑 Step 1: Create an API Token
 
-### PyPI Production Token
 1. Go to [PyPI Account Settings](https://pypi.org/manage/account/)
 2. Scroll to "API tokens" section
 3. Click "Add API token"
@@ -18,39 +17,26 @@ This guide will help you set up automated publishing to PyPI using GitHub Action
 5. Scope: "Entire account" (or specific to your project if it exists)
 6. Copy the token (starts with `pypi-`)
 
-### Test PyPI Token  
-1. Go to [Test PyPI Account Settings](https://test.pypi.org/manage/account/)
-2. Repeat the same process as above
-3. Copy the token (starts with `pypi-`)
-
-## 🔒 Step 2: Add Secrets to GitHub
+## 🔒 Step 2: Add Secret to GitHub
 
 1. Go to your GitHub repository
 2. Click **Settings** → **Secrets and variables** → **Actions**
 3. Click **New repository secret**
-4. Add these secrets:
+4. Add this secret:
 
 | Secret Name | Value | Description |
 |-------------|-------|-------------|
 | `PYPI_API_TOKEN` | `pypi-...` | Your PyPI production token |
-| `TEST_PYPI_API_TOKEN` | `pypi-...` | Your Test PyPI token |
 
-## 🌍 Step 3: Create GitHub Environments (Optional)
+## 🌍 Step 3: Create a GitHub Environment (Optional)
 
-For additional security, create environments:
+For additional security, create an environment:
 
 1. Go to **Settings** → **Environments**
-2. Create two environments:
-   - `pypi` (for production releases)
-   - `test-pypi` (for test releases)
+2. Create environment: `pypi` (for production releases)
 3. Add protection rules if desired (e.g., require reviews)
 
 ## 🚀 Step 4: How the Workflow Works
-
-### Automatic Test Publishing
-- **Trigger**: Push to `main` branch
-- **Action**: Publishes to Test PyPI automatically
-- **Purpose**: Test that packaging works correctly
 
 ### Production Publishing
 - **Trigger**: Create a GitHub release
@@ -84,14 +70,10 @@ gh release create v2.0.0 --title "Release v2.0.0" --notes "Major update with imp
 ### Check Workflow Status
 - Go to **Actions** tab to see workflow runs
 - Check for any failures and review logs
-- Verify packages appear on PyPI/Test PyPI
+- Verify the package appears on PyPI
 
 ### Verify Installation
 ```bash
-# Test PyPI
-pip install -i https://test.pypi.org/simple/ IsraeliQueue
-
-# Production PyPI (after release)
 pip install IsraeliQueue
 ```
 
@@ -107,7 +89,6 @@ pip install IsraeliQueue
 **Package Already Exists**
 - PyPI doesn't allow overwriting versions
 - Increment version number in your release
-- Use `skip-existing: true` for test uploads
 
 **Build Failures**
 - Check that all tests pass locally
@@ -129,7 +110,6 @@ pip install IsraeliQueue
 Once set up, your workflow will:
 
 - ✅ Run tests on every push
-- ✅ Publish to Test PyPI on main branch
 - ✅ Publish to production PyPI on releases
 - ✅ Generate build artifacts
 - ✅ Provide security scanning
