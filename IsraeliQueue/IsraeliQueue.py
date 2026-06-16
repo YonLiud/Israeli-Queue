@@ -9,12 +9,12 @@ class Item:
     item: Any
     group: int
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: object) -> bool:
         if isinstance(other, Item):
             return self.item == other.item and self.group == other.group
         return False
 
-    def same_group(self, other) -> bool:
+    def same_group(self, other: object) -> bool:
         """Check if this item is in the same group as another item."""
         if isinstance(other, Item):
             return self.group == other.group
